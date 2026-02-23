@@ -32,7 +32,13 @@
     }
 
     body {
-      background: radial-gradient(circle at top center, #0a192f, var(--bg-dark));
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at top center, rgba(10, 25, 47, 0.8), var(--bg-dark)),
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 30px 30px, 30px 30px;
+      
       color: var(--text-main);
       font-family: 'Poppins', sans-serif;
       min-height: 100vh;
@@ -48,7 +54,7 @@
       max-width: 1200px;
     }
 
-   /* --- GLOWING SIDEBAR NAVIGATION (Pinned to Upper Left) --- */
+   /* --- GLOWING SIDEBAR NAVIGATION --- */
     .sidebar {
       background: rgba(16, 24, 43, 0.85); 
       backdrop-filter: blur(15px);
@@ -99,7 +105,10 @@
     .glass-panel {
       background: var(--panel-bg);
       backdrop-filter: blur(12px);
-      border: 1px solid var(--panel-border);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-left: 1px solid rgba(255, 255, 255, 0.05);
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
       border-radius: 20px;
       padding: 3rem;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -210,22 +219,41 @@
       gap: 1.5rem;
     }
 
+    /* --- NEW FLEXBOX LAYOUT FOR CERTIFICATES TO CENTER THE BOTTOM ROW --- */
+    .cert-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* This perfectly centers the bottom 2 cards */
+      gap: 1.5rem;
+    }
+
+    /* Calculate exact width for 3 cards per row minus the gaps */
+    .cert-grid .card {
+      width: calc((100% - 3rem) / 3);
+    }
+
     .card {
       background: rgba(10, 15, 30, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-left: 1px solid rgba(255, 255, 255, 0.05);
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
       border-radius: 15px;
       padding: 1.5rem;
-      transition: transform 0.3s ease, border-color 0.3s ease;
+      transition: transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
-      text-decoration: none; /* Ensures cards that are links don't have underlines */
-      color: var(--text-main); /* Ensures cards that are links keep the right text color */
+      text-decoration: none; 
+      color: var(--text-main); 
     }
 
     .card:hover {
       transform: translateY(-5px);
-      border-color: var(--accent-cyan);
-      box-shadow: 0 5px 15px rgba(0, 210, 255, 0.1);
+      border: 1px solid var(--accent-cyan);
+      box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.5), 
+        0 0 25px rgba(0, 210, 255, 0.25), 
+        inset 0 0 12px rgba(0, 210, 255, 0.1); 
       cursor: pointer;
     }
 
@@ -246,6 +274,31 @@
       color: var(--text-muted);
       margin-bottom: 1.5rem;
       flex-grow: 1; 
+    }
+
+    /* --- CERTIFICATE IMAGE STYLING --- */
+    .cert-img-container {
+      width: 100%;
+      height: 180px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cert-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; 
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover .cert-img {
+      transform: scale(1.05); 
     }
 
     /* --- SKILLS LIST STYLING --- */
@@ -280,12 +333,12 @@
     }
 
     .tag {
-      background: rgba(0, 210, 255, 0.1);
-      color: var(--accent-cyan);
+      background: rgba(99, 102, 241, 0.1); 
+      color: #818cf8; 
+      border: 1px solid rgba(99, 102, 241, 0.2);
       font-size: 0.75rem;
       padding: 0.2rem 0.6rem;
       border-radius: 4px;
-      border: 1px solid rgba(0, 210, 255, 0.2);
     }
 
     .contact-link {
@@ -303,6 +356,10 @@
     @media (max-width: 1024px) {
       .education-grid, .projects-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+      /* Ensure certs adapt to medium screens (2 per row) */
+      .cert-grid .card {
+        width: calc((100% - 1.5rem) / 2);
       }
     }
 
@@ -324,6 +381,10 @@
       .education-grid, .projects-grid {
         grid-template-columns: 1fr; 
       }
+      /* Ensure certs adapt to small mobile screens (1 per row) */
+      .cert-grid .card {
+        width: 100%;
+      }
       .hero-panel h1 { font-size: 2rem; }
     }
   </style>
@@ -334,6 +395,7 @@
     <a href="#home" class="nav-btn active" title="Home"><i class="fas fa-home"></i></a>
     <a href="#skills" class="nav-btn" title="Skills"><i class="fas fa-laptop-code"></i></a>
     <a href="#education" class="nav-btn" title="Education"><i class="fas fa-graduation-cap"></i></a>
+    <a href="#certifications" class="nav-btn" title="Certifications"><i class="fas fa-certificate"></i></a>
     <a href="#projects" class="nav-btn" title="Projects"><i class="fas fa-folder-open"></i></a>
     <a href="#contact" class="nav-btn" title="Contact"><i class="fas fa-envelope"></i></a>
   </nav>
@@ -357,7 +419,6 @@
         <h2 class="section-title">My <span class="text-cyan">Skills</span></h2>
         
         <div class="bento-grid">
-          
           <div class="card">
             <i class="fas fa-code-branch"></i>
             <h3>Technical Skills</h3>
@@ -378,7 +439,6 @@
               <li><i class="fas fa-sync-alt"></i> Adaptability and Flexibility</li>
             </ul>
           </div>
-
         </div>
       </section>
 
@@ -386,7 +446,6 @@
         <h2 class="section-title">My <span class="text-cyan">Education</span></h2>
         
         <div class="education-grid">
-          
           <a href="https://www.facebook.com/StudentOrganizationBatStateULipa" target="_blank" class="card">
             <i class="fas fa-university"></i>
             <h3>College</h3>
@@ -416,6 +475,69 @@
             <h3>Elementary</h3>
             <p>Padre Garcia Central School</p>
           </a>
+        </div>
+      </section>
+
+      <section id="certifications" class="glass-panel">
+        <h2 class="section-title">My <span class="text-cyan">Certifications</span></h2>
+        
+        <div class="cert-grid">
+          
+          <div class="card">
+            <div class="cert-img-container">
+              <img src="Hackathon.jpg" alt="Technolympics Certificate" class="cert-img">
+            </div>
+            <h3>Technolympics: The Great Hackathon</h3>
+            <p>Alliance of Informatics and Computing Sciences Students</p>
+            <div class="tag-container">
+              <span class="tag">April 2023</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="cert-img-container">
+              <img src="DL.jpg" alt="Dean's List Certificate" class="cert-img">
+            </div>
+            <h3>Dean's List Award</h3>
+            <p>Batangas State University - CICS</p>
+            <div class="tag-container">
+              <span class="tag">A.Y. 2022-2023</span>
+              <span class="tag">GWA: 1.5375</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="cert-img-container">
+              <img src="RedHat1.jpg" alt="Red Hat Java EE Certificate" class="cert-img">
+            </div>
+            <h3>Red Hat Application Development I: Programming in Java EE</h3>
+            <p>Red Hat</p>
+            <div class="tag-container">
+              <span class="tag">August 2025</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="cert-img-container">
+              <img src="RedHat2.jpg" alt="Red Hat OpenShift Certificate" class="cert-img">
+            </div>
+            <h3>Red Hat OpenShift Development I: Introduction to Containers</h3>
+            <p>Red Hat</p>
+            <div class="tag-container">
+              <span class="tag">July 2025</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="cert-img-container">
+              <img src="TechSynergy.jpg" alt="TechSynergy Certificate" class="cert-img">
+            </div>
+            <h3>TechSynergy: Navigating the Digital Landscape</h3>
+            <p>Junior Philippine Computer Society - Lipa Chapter</p>
+            <div class="tag-container">
+              <span class="tag">December 2023</span>
+            </div>
+          </div>
 
         </div>
       </section>
@@ -551,7 +673,6 @@
         
         sections.forEach((section) => {
           const sectionTop = section.offsetTop;
-          // Trigger the color change when the section is a bit below the top of the screen
           if (pageYOffset >= sectionTop - 300) { 
             current = section.getAttribute("id");
           }
@@ -565,7 +686,6 @@
         });
       });
 
-      // Also handle direct clicks to ensure instant visual update
       navLinks.forEach(link => {
         link.addEventListener("click", function() {
           navLinks.forEach(btn => btn.classList.remove("active"));
