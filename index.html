@@ -101,17 +101,20 @@
       width: 100%;
     }
 
-    /* GLASS PANEL STYLING */
+    /* GLASS PANEL STYLING (INCREASED GLOW INTENSITY) */
     .glass-panel {
-      background: var(--panel-bg);
+      background: rgba(10, 20, 40, 0.6); 
       backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      border-left: 1px solid rgba(255, 255, 255, 0.05);
-      border-right: 1px solid rgba(0, 0, 0, 0.2);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+      /* Much brighter persistent borders */
+      border: 1px solid rgba(0, 210, 255, 0.35); 
+      border-top: 2px solid rgba(0, 210, 255, 0.6); 
       border-radius: 20px;
       padding: 3rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      /* Cranked up the glow effect here */
+      box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.8), /* Dark depth shadow */
+        0 0 50px rgba(0, 210, 255, 0.25), /* Stronger, wider outer glow */
+        inset 0 0 30px rgba(0, 210, 255, 0.15); /* Stronger inner glow */
       animation: fadeIn 1s ease-out forwards;
     }
 
@@ -133,9 +136,9 @@
       height: 120px;
       border-radius: 50%;
       border: 3px solid var(--accent-cyan);
-      box-shadow: var(--glow-shadow);
+      box-shadow: 0 0 25px rgba(0, 210, 255, 0.5); /* Boosted avatar glow too */
       margin-bottom: 1.5rem;
-      background: url('https://via.placeholder.com/120/0a192f/00d2ff?text=VA') center/cover;
+      background: url('profile.jpg') center/cover; /* Replace with your image */
     }
 
     .hero-panel h1 {
@@ -176,12 +179,12 @@
     .btn-solid {
       background: var(--accent-cyan);
       color: var(--bg-dark);
-      box-shadow: var(--glow-shadow);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.5); /* Stronger button glow */
     }
 
     .btn-solid:hover {
       background: #00b8e6;
-      box-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
+      box-shadow: 0 0 25px rgba(0, 210, 255, 0.8);
     }
 
     .btn-outline {
@@ -191,6 +194,7 @@
 
     .btn-outline:hover {
       background: rgba(0, 210, 255, 0.1);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
     }
 
     /* --- GRIDS --- */
@@ -219,25 +223,21 @@
       gap: 1.5rem;
     }
 
-    /* --- NEW FLEXBOX LAYOUT FOR CERTIFICATES TO CENTER THE BOTTOM ROW --- */
     .cert-grid {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center; /* This perfectly centers the bottom 2 cards */
+      justify-content: center; 
       gap: 1.5rem;
     }
 
-    /* Calculate exact width for 3 cards per row minus the gaps */
     .cert-grid .card {
       width: calc((100% - 3rem) / 3);
     }
 
+    /* CARDS STYLING */
     .card {
-      background: rgba(10, 15, 30, 0.5);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      border-left: 1px solid rgba(255, 255, 255, 0.05);
-      border-right: 1px solid rgba(0, 0, 0, 0.2);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+      background: rgba(16, 24, 43, 0.7); 
+      border: 1px solid rgba(0, 210, 255, 0.08); 
       border-radius: 15px;
       padding: 1.5rem;
       transition: transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
@@ -245,11 +245,12 @@
       flex-direction: column;
       text-decoration: none; 
       color: var(--text-main); 
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 210, 255, 0.03); 
     }
 
     .card:hover {
       transform: translateY(-5px);
-      border: 1px solid var(--accent-cyan);
+      border: 1px solid var(--accent-cyan); 
       box-shadow: 
         0 10px 20px rgba(0, 0, 0, 0.5), 
         0 0 25px rgba(0, 210, 255, 0.25), 
@@ -299,6 +300,58 @@
 
     .card:hover .cert-img {
       transform: scale(1.05); 
+    }
+
+    /* --- MODAL STYLING --- */
+    .modal {
+      display: none; 
+      position: fixed;
+      z-index: 2000; 
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(5, 11, 20, 0.85); 
+      backdrop-filter: blur(10px); 
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      max-width: 85%;
+      max-height: 85vh; 
+      border-radius: 10px;
+      border: 2px solid var(--accent-cyan);
+      box-shadow: 0 0 40px rgba(0, 210, 255, 0.4);
+      object-fit: contain;
+      animation: zoomIn 0.3s ease;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      color: var(--text-muted);
+      font-size: 45px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close-btn:hover {
+      color: var(--accent-cyan);
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     /* --- SKILLS LIST STYLING --- */
@@ -357,7 +410,6 @@
       .education-grid, .projects-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-      /* Ensure certs adapt to medium screens (2 per row) */
       .cert-grid .card {
         width: calc((100% - 1.5rem) / 2);
       }
@@ -381,7 +433,6 @@
       .education-grid, .projects-grid {
         grid-template-columns: 1fr; 
       }
-      /* Ensure certs adapt to small mobile screens (1 per row) */
       .cert-grid .card {
         width: 100%;
       }
@@ -663,8 +714,14 @@
     </main>
   </div>
 
+  <div id="certModal" class="modal">
+    <span class="close-btn">&times;</span>
+    <img class="modal-content" id="modalImg">
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
+      // SCROLL SPY LOGIC
       const sections = document.querySelectorAll("section");
       const navLinks = document.querySelectorAll(".sidebar .nav-btn");
 
@@ -691,6 +748,32 @@
           navLinks.forEach(btn => btn.classList.remove("active"));
           this.classList.add("active");
         });
+      });
+
+      // MODAL LOGIC
+      const modal = document.getElementById("certModal");
+      const modalImg = document.getElementById("modalImg");
+      const closeBtn = document.querySelector(".close-btn");
+      const certCards = document.querySelectorAll(".cert-grid .card");
+
+      certCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const img = this.querySelector(".cert-img");
+          if (img) {
+            modal.classList.add("show");
+            modalImg.src = img.src;
+          }
+        });
+      });
+
+      closeBtn.addEventListener("click", () => {
+        modal.classList.remove("show");
+      });
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("show");
+        }
       });
     });
   </script>
