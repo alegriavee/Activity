@@ -101,20 +101,42 @@
       width: 100%;
     }
 
-    /* GLASS PANEL STYLING (INCREASED GLOW INTENSITY) */
+    /* --- HEADER --- */
+    .top-header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      margin-bottom: -1rem; 
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-cyan); 
+      letter-spacing: 2px;
+      text-shadow: 0 0 15px rgba(0, 210, 255, 0.6); 
+    }
+
+    .logo span {
+      color: var(--text-main); 
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+
+    /* GLASS PANEL STYLING */
     .glass-panel {
       background: rgba(10, 20, 40, 0.6); 
       backdrop-filter: blur(12px);
-      /* Much brighter persistent borders */
       border: 1px solid rgba(0, 210, 255, 0.35); 
       border-top: 2px solid rgba(0, 210, 255, 0.6); 
       border-radius: 20px;
       padding: 3rem;
-      /* Cranked up the glow effect here */
       box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.8), /* Dark depth shadow */
-        0 0 50px rgba(0, 210, 255, 0.25), /* Stronger, wider outer glow */
-        inset 0 0 30px rgba(0, 210, 255, 0.15); /* Stronger inner glow */
+        0 10px 30px rgba(0, 0, 0, 0.8), 
+        0 0 50px rgba(0, 210, 255, 0.25), 
+        inset 0 0 30px rgba(0, 210, 255, 0.15); 
       animation: fadeIn 1s ease-out forwards;
     }
 
@@ -136,9 +158,9 @@
       height: 120px;
       border-radius: 50%;
       border: 3px solid var(--accent-cyan);
-      box-shadow: 0 0 25px rgba(0, 210, 255, 0.5); /* Boosted avatar glow too */
+      box-shadow: 0 0 25px rgba(0, 210, 255, 0.5); 
       margin-bottom: 1.5rem;
-      background: url('profile.jpg') center/cover; /* Replace with your image */
+      background: url('profile.jpg') center/cover;
     }
 
     .hero-panel h1 {
@@ -179,7 +201,7 @@
     .btn-solid {
       background: var(--accent-cyan);
       color: var(--bg-dark);
-      box-shadow: 0 0 15px rgba(0, 210, 255, 0.5); /* Stronger button glow */
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.5); 
     }
 
     .btn-solid:hover {
@@ -195,6 +217,71 @@
     .btn-outline:hover {
       background: rgba(0, 210, 255, 0.1);
       box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+    }
+
+    /* --- TECH MARQUEE (NEW) --- */
+    .tech-marquee {
+      width: 100%;
+      overflow: hidden;
+      padding: 2rem 0;
+      position: relative;
+      background: rgba(10, 20, 40, 0.4);
+      border: 1px solid rgba(0, 210, 255, 0.15);
+      border-radius: 20px;
+      margin-top: -0.5rem; 
+      box-shadow: inset 0 0 20px rgba(0, 210, 255, 0.05);
+      /* Fades the left and right edges smoothly into the background */
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: scroll 30s linear infinite;
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused; /* Pauses when they hover to read it! */
+    }
+
+    .marquee-items {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      padding-right: 4rem; 
+    }
+
+    .tech-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .tech-item i {
+      font-size: 2rem;
+    }
+
+    .tech-item:hover {
+      color: var(--text-main);
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+
+    .tech-item:hover i {
+      color: var(--accent-cyan);
+      text-shadow: 0 0 20px rgba(0, 210, 255, 0.8);
+      transform: scale(1.1);
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); } /* Moves exactly half the width to loop seamlessly */
     }
 
     /* --- GRIDS --- */
@@ -400,6 +487,30 @@
       gap: 1rem;
     }
 
+    /* --- FOOTER --- */
+    .site-footer {
+      text-align: center;
+      padding: 2.5rem 1rem 1rem 1rem;
+      margin-top: 1rem;
+      border-top: 1px solid rgba(0, 210, 255, 0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    .site-footer h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      color: var(--text-main);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    .site-footer p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -430,6 +541,10 @@
         padding: 1rem;
         justify-content: space-evenly; 
       }
+      .top-header {
+        justify-content: center; 
+        margin-bottom: 0;
+      }
       .education-grid, .projects-grid {
         grid-template-columns: 1fr; 
       }
@@ -454,9 +569,13 @@
   <div class="dashboard-container">
     <main class="main-content">
       
+      <header class="top-header">
+        <div class="logo">VA<span>.</span></div>
+      </header>
+
       <section id="home" class="glass-panel hero-panel">
         <div class="avatar"></div>
-        <h1>Hi, I'm <span class="text-cyan">Veejay Adame</span></h1>
+        <h1>Hi, I'm <span class="text-cyan">Veejay Alegria Adame</span></h1>
         <h2>IT Professional & Web Developer <span class="text-cyan">|</span> BatStateU</h2>
         <p>I am a BS Information Technology student specializing in creating efficient, responsive web applications and providing technical infrastructure support. Passionate about problem-solving, clean code, and user-centered design.</p>
         
@@ -465,6 +584,33 @@
           <a href="#contact" class="btn-outline">Contact Me</a>
         </div>
       </section>
+
+      <div class="tech-marquee">
+        <div class="marquee-track">
+          <div class="marquee-items">
+            <div class="tech-item"><i class="fab fa-html5"></i> HTML5</div>
+            <div class="tech-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+            <div class="tech-item"><i class="fab fa-php"></i> PHP</div>
+            <div class="tech-item"><i class="fas fa-database"></i> MySQL</div>
+            <div class="tech-item"><i class="fab fa-java"></i> Java</div>
+            <div class="tech-item"><i class="fab fa-redhat"></i> Red Hat</div>
+            <div class="tech-item"><i class="fas fa-shield-alt"></i> Security</div>
+            <div class="tech-item"><i class="fas fa-chart-line"></i> Analytics</div>
+            <div class="tech-item"><i class="fab fa-github"></i> GitHub</div>
+          </div>
+          <div class="marquee-items">
+            <div class="tech-item"><i class="fab fa-html5"></i> HTML5</div>
+            <div class="tech-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+            <div class="tech-item"><i class="fab fa-php"></i> PHP</div>
+            <div class="tech-item"><i class="fas fa-database"></i> MySQL</div>
+            <div class="tech-item"><i class="fab fa-java"></i> Java</div>
+            <div class="tech-item"><i class="fab fa-redhat"></i> Red Hat</div>
+            <div class="tech-item"><i class="fas fa-shield-alt"></i> Security</div>
+            <div class="tech-item"><i class="fas fa-chart-line"></i> Analytics</div>
+            <div class="tech-item"><i class="fab fa-github"></i> GitHub</div>
+          </div>
+        </div>
+      </div>
 
       <section id="skills" class="glass-panel">
         <h2 class="section-title">My <span class="text-cyan">Skills</span></h2>
@@ -710,6 +856,11 @@
           </a>
         </div>
       </section>
+
+      <footer class="site-footer">
+        <h3>Let's build something amazing together.</h3>
+        <p>&copy; 2026 Veejay Adame. All Rights Reserved.</p>
+      </footer>
 
     </main>
   </div>
