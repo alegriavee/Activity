@@ -51,7 +51,39 @@
 <body>
   <div class="intro-container">
     <h1>Hi, I am Veejay Alegria Adame</h1>
-    <p>Welcome to my awesome corner of the web.</p>
+    <p># Hi there, I'm Veejay 👋
+
+I am a BS Information Technology student at Batangas State University - TNEU Lipa City, passionate about data science, machine learning, and network infrastructure. I enjoy turning complex data into actionable insights and building systems that solve real-world problems.
+
+### 🌐 Check out my full portfolio: (https://alegriavee.github.io/Activity/)
+
+---
+
+### 👨‍💻 What I'm currently working on
+* 🏛️ **OJT at the Department of Agriculture (MIS Office):** Providing IT support, managing local networks, troubleshooting hardware, and assisting with satellite communications.
+* 🥬 **Machine Learning in Agriculture:** Developing an image classification model (TensorFlow/Keras) to detect and diagnose diseases in lettuce leaves using computer vision.
+* 💧 **Capstone Project:** Building an Automated Water Billing Management System for BAWASA, integrating a SARIMAX machine learning model for demand and sales forecasting.
+* 💻 **Web Development:** Designing and deploying my personal developer portfolio.
+
+### 🛠️ Tech Stack & Tools
+*(This matches the marquee on your portfolio website!)*
+* **Data Science & ML:** Python, TensorFlow, Keras, Pandas, NumPy, Scikit-learn
+* **Data Analytics:** Power BI, Microsoft Fabric, T-SQL, Dimensional Modeling
+* **IT Infrastructure:** Networking, Hardware Troubleshooting, Windows Server, Zone-Based Firewalls
+* **Development:** HTML/CSS, Git, GitHub, Google Colab
+
+---
+
+### 🚀 Highlighted Repositories
+* **[Lettuce Disease Classifier](link-to-repo):** A deep learning model built with EfficientNet/MobileNetV2 to identify plant diseases from images.
+* **[BAWASA Billing & Forecasting System](link-to-repo):** A full-stack capstone project featuring predictive analytics using time-series decomposition.
+
+---
+
+### 📫 Let's Connect!
+* **Portfolio:** (https://alegriavee.github.io/Activity/)
+* **LinkedIn:** [Insert Link]
+* **Email:** veejayadame@gmail.com.</p>
   </div>
 </body>
 </html>
