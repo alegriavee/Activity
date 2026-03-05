@@ -153,6 +153,7 @@
       text-align: center;
     }
 
+    /* 👇 THIS IS WHERE YOUR PHOTO IS LINKED 👇 */
     .avatar {
       width: 120px;
       height: 120px;
@@ -160,7 +161,7 @@
       border: 3px solid var(--accent-cyan);
       box-shadow: 0 0 25px rgba(0, 210, 255, 0.5); 
       margin-bottom: 1.5rem;
-      background: url('profile.jpg') center/cover;
+      background: url('my-photo.jpg') center/cover; 
     }
 
     .hero-panel h1 {
@@ -219,7 +220,7 @@
       box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
     }
 
-    /* --- TECH MARQUEE (NEW) --- */
+    /* --- TECH MARQUEE --- */
     .tech-marquee {
       width: 100%;
       overflow: hidden;
@@ -230,7 +231,6 @@
       border-radius: 20px;
       margin-top: -0.5rem; 
       box-shadow: inset 0 0 20px rgba(0, 210, 255, 0.05);
-      /* Fades the left and right edges smoothly into the background */
       -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
       mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
@@ -242,7 +242,7 @@
     }
 
     .marquee-track:hover {
-      animation-play-state: paused; /* Pauses when they hover to read it! */
+      animation-play-state: paused; 
     }
 
     .marquee-items {
@@ -281,7 +281,7 @@
 
     @keyframes scroll {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); } /* Moves exactly half the width to loop seamlessly */
+      100% { transform: translateX(-50%); } 
     }
 
     /* --- GRIDS --- */
@@ -574,7 +574,8 @@
       </header>
 
       <section id="home" class="glass-panel hero-panel">
-        <div class="avatar"></div>
+        <div class="avatar"></div> 
+        
         <h1>Hi, I'm <span class="text-cyan">Veejay Alegria Adame</span></h1>
         <h2>IT Professional & Web Developer <span class="text-cyan">|</span> BatStateU</h2>
         <p>I am a BS Information Technology student specializing in creating efficient, responsive web applications and providing technical infrastructure support. Passionate about problem-solving, clean code, and user-centered design.</p>
@@ -872,7 +873,6 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // SCROLL SPY LOGIC
       const sections = document.querySelectorAll("section");
       const navLinks = document.querySelectorAll(".sidebar .nav-btn");
 
@@ -901,7 +901,6 @@
         });
       });
 
-      // MODAL LOGIC
       const modal = document.getElementById("certModal");
       const modalImg = document.getElementById("modalImg");
       const closeBtn = document.querySelector(".close-btn");
